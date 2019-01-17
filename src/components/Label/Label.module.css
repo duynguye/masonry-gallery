@@ -1,0 +1,8 @@
+.label {
+    color: #736ced;
+    display: block;
+    font-family: 'Kristi', cursive;
+    font-size: 55px;
+    margin-bottom: -12px;
+    pointer-events: none;
+}

@@ -1,0 +1,4 @@
+.container {
+    display: flex;
+    padding-left: calc(8.33333vw / 2);
+}

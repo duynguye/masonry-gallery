@@ -1,0 +1,42 @@
+.container {
+    padding: 0 10px 20px 10px;
+    position: absolute;
+    transition: all 0.7s cubic-bezier(0.42, 0.01, 0.23, 1);
+}
+
+.wrapper {
+    background-color: #ffd2eb;
+    border-radius: 7px;
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.overlay {
+    background-color: rgba(46, 61, 108, 0.7);
+    border-radius: 7px;
+    height: calc(100% + 10px);
+    left: 50%;
+    opacity: 0;
+    padding: 20px;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(0.95);
+    transition: all 0.2s cubic-bezier(0.42, 0.01, 0.23, 1);
+    width: calc(100% + 10px);
+    z-index: 10;
+}
+
+.overlay span {
+    color: white;
+    display: inline-block;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.overlay.active {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1);
+}

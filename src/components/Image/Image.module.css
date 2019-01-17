@@ -1,0 +1,8 @@
+.image {
+    border-radius: 7px;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.42, 0.01, 0.23, 1);
+    width: 100%;
+}

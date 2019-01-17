@@ -1,0 +1,19 @@
+.button {
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    color: #2e3d6c;
+    cursor: pointer;
+    font-family: "Kristi", cursive;
+    font-size: 65px;
+    font-weight: 400;
+    line-height: 0.6;
+    outline: none;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+}
+
+.button:hover {
+    color: #2e3d6c;
+}
