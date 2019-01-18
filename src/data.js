@@ -20,7 +20,11 @@ const galleryImages = [
       "url": "https://ktxs61029site.wpengine.com/wp-content/uploads/2019/01/batman-lay-on-cityscape.jpg",
       "category": "Layered Cakes",
       "title": "batman lay on cityscape",
-      "tags": [],
+      "tags": [
+        "Batman",
+        "Birthday",
+        "Gray"
+      ],
       "height": 2000,
       "width": 1131,
       "thumbnail": "https://ktxs61029site.wpengine.com/wp-content/uploads/2019/01/batman-lay-on-cityscape-768x1358.jpg"
@@ -9135,6 +9139,6 @@ const galleryImages = [
       "width": 2250,
       "thumbnail": "https://ktxs61029site.wpengine.com/wp-content/uploads/2019/01/wedding-anniversary-plaque-gum-paste-roses-air-brushed-768x1365.jpg"
     }
-];
+  ];
 
 export default galleryImages;

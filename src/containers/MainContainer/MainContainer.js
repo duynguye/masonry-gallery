@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { HeaderContainer, GalleryContainer } from '../'
 import { Dropdown, Label, FormGroup, Search, Button } from '../../components';
-import { shuffle } from '../../global';
 
 const INITIAL_VIEW_COUNT = 20;
 
@@ -49,7 +49,46 @@ class MainContainer extends Component {
     }
 
     search () {
-        console.log(this.state.results.trim());
+        let { results, data } = this.state;
+        let split = results.toLowerCase().split(/[ ,]+/);
+        let sorted = [];
+
+        function arrayRemove(arr, value) {
+            return arr.filter(function (element) {
+                return element != value;
+            });
+        }
+
+    
+        if (split[0].trim() !== '') {
+            console.log('Searching...');
+            console.log(data);
+
+            for (let i = 0; i < split.length; i++) {
+                let filter = split[i];
+
+                data.map((item) => {
+                    const tags = item.tags;
+                    
+                    if (tags.length > 0) {
+                        for (let j = 0; j < tags.length; j++) {
+                            if (tags[j].toLowerCase().indexOf(filter) !== -1) {
+                                sorted.push(item);
+                                return;
+                            }
+                        }
+                    }
+
+                    return;
+                });
+            }
+        }
+
+        console.log(sorted);
+
+        this.setState({
+            sorted
+        });
     }
 
     handleInput (results) {
@@ -103,7 +142,9 @@ class MainContainer extends Component {
                     </FormGroup>
 
                     <FormGroup>
-                        <Button onclick={() => {this.search()}}>Search</Button>
+                        <Button onclick={() => {this.search()}}>
+                            <FontAwesomeIcon icon={['fal', 'search']} style={{ fontSize: '3rem', transform: 'translateY(5px)' }} />
+                        </Button>
                     </FormGroup>
 
                     <FormGroup>
@@ -117,9 +158,9 @@ class MainContainer extends Component {
                 
                 <GalleryContainer data={this.state.sorted} loadMore={this.handleLoad.bind(this)} />
                 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 70, marginTop: 70, width: '100%'}}>
+                {/* <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 70, marginTop: 70, width: '100%'}}>
                     <Button onclick={this.handleLoad.bind(this)}>Load More</Button>
-                </div>
+                </div> */}
             </div>
         );
     }
