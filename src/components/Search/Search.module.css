@@ -7,7 +7,12 @@
     outline: none;
     padding: 15px;
     transition: all 0.2s cubic-bezier(0.42, 0.01, 0.23, 1);
-    width: 250px;
+    width: 350px;
+}
+
+.mobile {
+    display: block;
+    width: 100%;
 }
 
 .input:active,

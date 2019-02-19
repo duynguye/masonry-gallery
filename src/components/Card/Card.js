@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { isMobileOnly } from 'react-device-detect';
 import styles from './Card.module.css';
 
 export default class Card extends Component {
@@ -6,7 +7,8 @@ export default class Card extends Component {
         super(props);
 
         this.state = {
-            hovering: false
+            hovering: false,
+            offset: isMobileOnly ? 0 : 20
         };
 
         this.handleHover = this.handleHover.bind(this);
@@ -20,10 +22,10 @@ export default class Card extends Component {
 
     render () {
         const { height, width, left, top, children, title, onclick } = this.props;
-        const { hovering } = this.state;
+        const { hovering, offset } = this.state;
 
         return (
-            <div className={styles.container} style={{ height, width: width - 20, transform: `translate3d(${left}px, ${top}px, 0)` }} onClick={onclick}>
+            <div className={styles.container} style={{ height, width: width - offset, transform: `translate3d(${left}px, ${top}px, 0)` }} onClick={onclick}>
                 <div 
                     className={styles.wrapper} 
                     onMouseEnter={() => this.handleHover(true)}

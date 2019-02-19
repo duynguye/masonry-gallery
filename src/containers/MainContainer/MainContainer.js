@@ -52,18 +52,8 @@ class MainContainer extends Component {
         let { results, data } = this.state;
         let split = results.toLowerCase().split(/[ ,]+/);
         let sorted = [];
-
-        function arrayRemove(arr, value) {
-            return arr.filter(function (element) {
-                return element != value;
-            });
-        }
-
     
         if (split[0].trim() !== '') {
-            console.log('Searching...');
-            console.log(data);
-
             for (let i = 0; i < split.length; i++) {
                 let filter = split[i];
 
@@ -74,17 +64,15 @@ class MainContainer extends Component {
                         for (let j = 0; j < tags.length; j++) {
                             if (tags[j].toLowerCase().indexOf(filter) !== -1) {
                                 sorted.push(item);
-                                return;
+                                return undefined;
                             }
                         }
                     }
 
-                    return;
+                    return undefined;
                 });
             }
         }
-
-        console.log(sorted);
 
         this.setState({
             sorted
@@ -110,7 +98,7 @@ class MainContainer extends Component {
     }
 
     handleLoad () {
-        const { data, viewing, currentCategory } = this.state;
+        const { data, viewing, currentCategory, results, sorted } = this.state;
         let filtered = [];
         let group = [];
 
@@ -121,10 +109,20 @@ class MainContainer extends Component {
             group = data.slice(0, viewing + 20);
         }
 
+        if (results) {
+            group = sorted
+        }
+
         this.setState({
             viewing: viewing + 20,
             sorted: group
         });
+    }
+
+    handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            this.search();
+        }
     }
 
     render () {
@@ -132,28 +130,26 @@ class MainContainer extends Component {
             <div>
                 <HeaderContainer>
                     <FormGroup>
+                        <Label>Search</Label>
+                        <Search onupdate={(results) => { this.handleInput(results) }} value={this.state.results} onenter={this.handleEnter} />
+                    </FormGroup>
+
+                    <FormGroup>
                         <Label>Categories</Label>
                         <Dropdown items={this.state.categories} handler={this.handleDropdown.bind(this)} active={this.state.currentCategory} />
                     </FormGroup>
 
-                    <FormGroup>
-                        <Label>Search</Label>
-                        <Search onupdate={(results) => { this.handleInput(results) }} value={this.state.results} />
-                    </FormGroup>
-
-                    <FormGroup>
+                    <FormGroup layout='row'>
                         <Button onclick={() => {this.search()}}>
                             <FontAwesomeIcon icon={['fal', 'search']} style={{ fontSize: '3rem', transform: 'translateY(5px)' }} />
                         </Button>
-                    </FormGroup>
 
-                    <FormGroup>
                         <Button onclick={() => {this.reset()}}>Clear</Button>
                     </FormGroup>
 
-                    <FormGroup>
+                    {/* <FormGroup>
                         <p>Viewing { this.state.viewing } out of { this.state.data.length } Images</p>
-                    </FormGroup>
+                    </FormGroup> */}
                 </HeaderContainer>
                 
                 <GalleryContainer data={this.state.sorted} loadMore={this.handleLoad.bind(this)} />

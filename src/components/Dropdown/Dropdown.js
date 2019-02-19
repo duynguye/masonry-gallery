@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isMobileOnly } from 'react-device-detect';
 import styles from './Dropdown.module.css';
 
 export class Dropdown extends Component {
@@ -33,12 +34,12 @@ export class Dropdown extends Component {
         ));
 
         return (
-            <div className={styles.container}>
-                <div className={[styles.currentItem, open ? styles.open : ''].join(' ')} onClick={this.handleClick}>
+            <div className={[styles.container, isMobileOnly ? styles.mobile : ''].join(' ')}>
+                <div className={[styles.currentItem, isMobileOnly ? styles.mobile : '', open ? styles.open : ''].join(' ')} onClick={this.handleClick}>
                     { active ? active : 'Please select a category...' }
                     <FontAwesomeIcon icon='sort' />
                 </div>
-                <ul className={open ? styles.open : ''}>{ list }</ul>
+                <ul className={[isMobileOnly ? styles.mobile : '', open ? styles.open : ''].join(' ')}>{ list }</ul>
             </div>
         );
     }
