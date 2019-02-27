@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -9,6 +8,7 @@
  * @package    Infinity_Gallery
  * @subpackage Infinity_Gallery/admin
  */
+namespace Infinity\Gallery;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -20,7 +20,7 @@
  * @subpackage Infinity_Gallery/admin
  * @author     Andy Nguyen <anguyen@compulse.com>
  */
-class Infinity_Gallery_Admin {
+class Admin {
 
 	/**
 	 * The ID of this plugin.

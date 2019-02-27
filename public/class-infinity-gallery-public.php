@@ -9,6 +9,7 @@
  * @package    Infinity_Gallery
  * @subpackage Infinity_Gallery/public
  */
+namespace Infinity\Gallery;
 
 /**
  * The public-facing functionality of the plugin.
@@ -20,7 +21,7 @@
  * @subpackage Infinity_Gallery/public
  * @author     Andy Nguyen <anguyen@compulse.com>
  */
-class Infinity_Gallery_Public {
+class PublicClass {
 
 	/**
 	 * The ID of this plugin.

@@ -9,6 +9,7 @@
  * @package    Infinity_Gallery
  * @subpackage Infinity_Gallery/includes
  */
+namespace Infinity\Gallery;
 
 /**
  * Register all actions and filters for the plugin.
@@ -21,7 +22,7 @@
  * @subpackage Infinity_Gallery/includes
  * @author     Andy Nguyen <anguyen@compulse.com>
  */
-class Infinity_Gallery_Loader {
+class Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

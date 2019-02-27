@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Infinity Gallery
  * Plugin URI:        https://compulse.com/infinity
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Flexible gallery system that allows users to add as many images as they want and will allow custom sort and search filters.
  * Version:           1.0.0
  * Author:            Andy Nguyen
  * Author URI:        https://andynguyen.io
@@ -24,6 +24,9 @@
  * Text Domain:       infinity-gallery
  * Domain Path:       /languages
  */
+namespace Infinity;
+
+use Infinity\Gallery;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -31,11 +34,9 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
+ * Current plugin version.
  */
-define( 'PLUGIN_NAME_VERSION', '1.0.0' );
+define( 'INFINITY_GALLERY_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
@@ -75,7 +76,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-infinity-gallery.php';
  */
 function run_infinity_gallery() {
 
-	$plugin = new Infinity_Gallery();
+	$plugin = new Gallery();
 	$plugin->run();
 
 }

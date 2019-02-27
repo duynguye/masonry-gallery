@@ -12,6 +12,7 @@
  * @package    Infinity_Gallery
  * @subpackage Infinity_Gallery/includes
  */
+namespace Infinity\Gallery;
 
 /**
  * Define the internationalization functionality.
@@ -24,7 +25,7 @@
  * @subpackage Infinity_Gallery/includes
  * @author     Andy Nguyen <anguyen@compulse.com>
  */
-class Infinity_Gallery_i18n {
+class i18n {
 
 
 	/**

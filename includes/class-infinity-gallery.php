@@ -12,6 +12,12 @@
  * @package    Infinity_Gallery
  * @subpackage Infinity_Gallery/includes
  */
+namespace Infinity;
+
+use Infinity\Gallery\Loader;
+use Infinity\Gallery\i18n;
+use Infinity\Gallery\Admin;
+use Infinity\Gallery\PublicClass;
 
 /**
  * The core plugin class.
@@ -27,7 +33,7 @@
  * @subpackage Infinity_Gallery/includes
  * @author     Andy Nguyen <anguyen@compulse.com>
  */
-class Infinity_Gallery {
+class Gallery {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -67,8 +73,9 @@ class Infinity_Gallery {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+
+		if ( defined( 'INFINITY_GALLERY_VERSION' ) ) {
+			$this->version = INFINITY_GALLERY_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -78,7 +85,6 @@ class Infinity_Gallery {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -122,7 +128,7 @@ class Infinity_Gallery {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-infinity-gallery-public.php';
 
-		$this->loader = new Infinity_Gallery_Loader();
+		$this->loader = new Loader();
 
 	}
 
@@ -137,7 +143,7 @@ class Infinity_Gallery {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Infinity_Gallery_i18n();
+		$plugin_i18n = new i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +158,7 @@ class Infinity_Gallery {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Infinity_Gallery_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,7 +174,7 @@ class Infinity_Gallery {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Infinity_Gallery_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new PublicClass( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
